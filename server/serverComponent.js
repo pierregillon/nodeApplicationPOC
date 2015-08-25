@@ -11,9 +11,7 @@
         self.start = function(port){
             var app = express();
 
-            app.get('/', function (req, res) {
-                res.send('Hello World!');
-            });
+            app.use(express.static('./client/dist'));
 
             server = app.listen(port, function () {
                 console.log('Server listening on port %s ...', port);
