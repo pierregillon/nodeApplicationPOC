@@ -113,7 +113,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   IF !ERRORLEVEL! NEQ 0 goto error
 
   echo Running tests.
-  call :ExecuteCmd "node_modules\.bin\gulp" test
+  call :ExecuteCmd "node_modules\.bin\gulp" server-test
   IF !ERRORLEVEL! NEQ 0 goto error
 
   echo Building client with gulp.
