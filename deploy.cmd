@@ -2,7 +2,7 @@
 
 :: ----------------------
 :: KUDU Deployment Script
-:: Version: 0.1.13
+:: Version: 0.2.2
 :: ----------------------
 
 :: Prerequisites
@@ -100,17 +100,6 @@ call :SelectNodeVersion
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-
-  ::echo Cleaning npm cache.
-  ::call :ExecuteCmd !NPM_CMD! cache clean -g
-  ::call :ExecuteCmd !NPM_CMD! cache clean
-  ::IF !ERRORLEVEL! NEQ 0 goto error
-
-  ::echo Removing node_modules folder.
-  ::call :ExecuteCmd del node_modules /S /Q
-  ::IF !ERRORLEVEL! NEQ 0 goto error
-
-  echo Installing production packages.
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
