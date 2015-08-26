@@ -101,10 +101,10 @@ call :SelectNodeVersion
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
 
-  echo Cleaning npm cache.
+  ::echo Cleaning npm cache.
   ::call :ExecuteCmd !NPM_CMD! cache clean -g
-  call :ExecuteCmd !NPM_CMD! cache clean
-  IF !ERRORLEVEL! NEQ 0 goto error
+  ::call :ExecuteCmd !NPM_CMD! cache clean
+  ::IF !ERRORLEVEL! NEQ 0 goto error
 
   ::echo Removing node_modules folder.
   ::call :ExecuteCmd del node_modules /S /Q
