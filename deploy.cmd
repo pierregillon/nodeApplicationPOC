@@ -100,11 +100,26 @@ call :SelectNodeVersion
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
+
   echo Removing node_modules folder.
   call :ExecuteCmd del node_modules /S /Q
+
   echo Installing production packages.
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
+
+  echo Installing development packages.
+  call :ExecuteCmd !NPM_CMD! install --development
+  IF !ERRORLEVEL! NEQ 0 goto error
+
+  echo Running tests.
+  call :ExecuteCmd "node_modules\.bin\gulp" test
+  IF !ERRORLEVEL! NEQ 0 goto error
+
+  echo Building client with gulp.
+  call :ExecuteCmd "node_modules\.bin\gulp" build-client
+  IF !ERRORLEVEL! NEQ 0 goto error
+
   popd
 )
 
