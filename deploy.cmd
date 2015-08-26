@@ -99,6 +99,16 @@ call :SelectNodeVersion
 
 :: 3. Install npm packages
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  echo Cleaning npm cache.
+  call :ExecuteCmd !NPM_CMD! cache clean -g
+  IF !ERRORLEVEL! NEQ 0 goto error
+  call :ExecuteCmd !NPM_CMD! cache clean
+  IF !ERRORLEVEL! NEQ 0 goto error
+
+  echo Removing node_modules folder.
+  call :ExecuteCmd del node_modules /S /Q
+  IF !ERRORLEVEL! NEQ 0 goto error
+
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
