@@ -2,7 +2,7 @@
 
 :: ----------------------
 :: KUDU Deployment Script
-:: Version: 0.2.2
+:: Version: 0.1.13
 :: ----------------------
 
 :: Prerequisites
@@ -102,20 +102,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production
   IF !ERRORLEVEL! NEQ 0 goto error
-
-  ::call :ExecuteCmd !NPM_CMD! install --development
-  ::IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
-
-:: 4. Build & Test
-::pushd "%DEPLOYMENT_TARGET%"
-::call :ExecuteCmd !NPM_CMD! install --development
-::call :ExecuteCmd "%NODE_EXE%" node_modules\gulp\bin\gulp test
-::IF !ERRORLEVEL! NEQ 0 goto error
-::call :ExecuteCmd "%NODE_EXE%" node_modules\gulp\bin\gulp build-client
-::IF !ERRORLEVEL! NEQ 0 goto error
-::popd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
