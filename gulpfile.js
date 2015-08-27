@@ -27,7 +27,10 @@
         return gulp
             .src('./client/sources/index.html')
             .pipe(inject(gulp.src([
-                './client/sources/js/**/*',
+                './client/sources/js/libraries/*',
+                './client/sources/js/components/*',
+                './client/sources/js/stores/*',
+                './client/sources/js/*',
                 './client/sources/css/**/*',
                 '!./client/sources/js/**/*.spec.js'], {read: false}), {relative:true}))
             .pipe(gulp.dest('./client/sources'));

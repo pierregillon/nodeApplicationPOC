@@ -30,11 +30,14 @@
         <!-- endbuild -->
 
         <!-- build:applicationJs assets/scripts/application.js -->
-        <!-- inject:jsx -->
-        <script type="text/jsx" src="js/home.controller.jsx"></script>
-        <!-- endinject -->
         <!-- inject:js -->
-        <script src="js/poc.module.js"></script>
+        <script src="js/libraries/ioc.js"></script>
+        <script src="js/stores/todoStore.js"></script>
+        <!-- endinject -->
+
+        <!-- inject:jsx -->
+        <script type="text/jsx" src="js/components/app.react.jsx"></script>
+        <script type="text/jsx" src="js/app.jsx"></script>
         <!-- endinject -->
         <!-- endbuild -->
 
