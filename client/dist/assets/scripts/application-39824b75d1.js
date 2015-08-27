@@ -1,1 +1,0 @@
-!function(o){"use strict";o.module("poc",[])}(angular),function(o){function l(){this.text="Hello world guys !"}o.module("poc").controller("homeController",l),l.$inject=[]}(angular);

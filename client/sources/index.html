@@ -15,27 +15,31 @@
 
     </head>
     <body ng-app="poc">
-        <div ng-controller="homeController as controller">
-            <span ng-bind="controller.text"></span>
-        </div>
+        <div id="root" ></div>
 
         <!-- build:librariesJs assets/scripts/libraries.js -->
         <!-- bower:js -->
         <script src="../../bower_components/modernizr/modernizr.js"></script>
         <script src="../../bower_components/jquery/dist/jquery.js"></script>
-        <script src="../../bower_components/angular/angular.js"></script>
         <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
         <script src="../../bower_components/jquery.cookie/jquery.cookie.js"></script>
         <script src="../../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
         <script src="../../bower_components/foundation/js/foundation.js"></script>
+        <script src="../../bower_components/react/react.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
         <!-- build:applicationJs assets/scripts/application.js -->
+        <!-- inject:jsx -->
+        <script type="text/jsx" src="js/home.controller.jsx"></script>
+        <!-- endinject -->
         <!-- inject:js -->
         <script src="js/poc.module.js"></script>
-        <script src="js/home.controller.js"></script>
         <!-- endinject -->
+        <!-- endbuild -->
+
+        <!-- build:remove -->
+        <script src="../../bower_components/react/JSXTransformer.js"></script>
         <!-- endbuild -->
     </body>
 </html>

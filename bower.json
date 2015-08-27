@@ -13,11 +13,9 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "angular-mocks": "~1.4.4"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "angular": "~1.4.4",
-    "foundation": "~5.5.2"
+    "foundation": "~5.5.2",
+    "react": "~0.13.3"
   }
 }

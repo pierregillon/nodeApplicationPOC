@@ -12,8 +12,10 @@
     var minifyHtml = require('gulp-minify-html');
     var usemin = require('gulp-usemin');
     var rev = require('gulp-rev');
+    var react = require('gulp-react');
 
-    gulp.task('inject-dependencies', function () {
+    // ----- Files injection
+    gulp.task('inject-library-files', function () {
         return gulp
             .src('./client/sources/index.html')
             .pipe(wiredep({
@@ -21,45 +23,42 @@
             }))
             .pipe(gulp.dest('./client/sources'));
     });
-
-    gulp.task('inject-application', function () {
+    gulp.task('inject-application-files', function () {
         return gulp
             .src('./client/sources/index.html')
             .pipe(inject(gulp.src([
-                './client/sources/js/**/*.module.js',
-                './client/sources/js/**/*.controller.js',
-                './client/sources/css/**/*.css',
+                './client/sources/js/**/*',
+                './client/sources/css/**/*',
                 '!./client/sources/js/**/*.spec.js'], {read: false}), {relative:true}))
             .pipe(gulp.dest('./client/sources'));
     });
+    gulp.task('inject-files', ['inject-library-files', 'inject-application-files']);
 
-    gulp.task('inject', ['inject-dependencies', 'inject-application']);
-
+    // ----- Build dist
     gulp.task('build-client', function () {
         return gulp.src('./client/sources/index.html')
             .pipe(usemin({
                 applicationCss: [minifyCss(), rev()],
                 librariesCss: [minifyCss(), rev()],
-                applicationJs: [uglify(), rev()],
+                applicationJs: [react(), uglify(), rev()],
                 librariesJs: [uglify(), rev()],
                 html: [minifyHtml({empty: true})]
             }))
             .pipe(gulp.dest('./client/dist'));
     });
 
+    // ----- Tests
     gulp.task('server-test', function () {
         return gulp
             .src('./server/**/*.spec.js', {read: false})
             .pipe(mocha());
     });
-
     gulp.task('client-test', function(callback) {
         var server = new karma.Server({
             configFile: __dirname + '/karma.conf.js'
         }, callback);
         return server.start();
     });
-
     gulp.task('test', ['client-test', 'server-test']);
 
 }(require));
