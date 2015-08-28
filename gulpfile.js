@@ -6,6 +6,7 @@
     var karma = require('karma');
     var concat = require('gulp-concat');
     var wiredep = require('wiredep').stream;
+    var wiredepSync = require('wiredep');
     var inject = require('gulp-inject');
     var uglify = require('gulp-uglify');
     var minifyCss = require('gulp-minify-css');
@@ -59,10 +60,30 @@
     });
     gulp.task('client-test', function(callback) {
         var server = new karma.Server({
-            configFile: __dirname + '/karma.conf.js'
+            configFile: __dirname + '/karma.conf.js',
+            files: getClientFilesToTests()
+        }, callback);
+        return server.start();
+    });
+    gulp.task('client-test-w', function(callback) {
+        var server = new karma.Server({
+            configFile: __dirname + '/karma.conf.js',
+            files: getClientFilesToTests(),
+            singleRun: false
         }, callback);
         return server.start();
     });
     gulp.task('test', ['client-test', 'server-test']);
+
+    // ----- Internal logic
+    function getClientFilesToTests(){
+        var result = [];
+        result = result.concat(wiredepSync({}).js);
+        result = result.concat([
+            './client/sources/js/libraries/*',
+            './client/sources/js/**/*.js',
+            './client/sources/js/**/*.spec.js']);
+        return result;
+    }
 
 }(require));
