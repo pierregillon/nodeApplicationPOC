@@ -21,6 +21,7 @@
         <!-- bower:js -->
         <script src="../../bower_components/modernizr/modernizr.js"></script>
         <script src="../../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../../bower_components/eventEmitter/EventEmitter.js"></script>
         <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
         <script src="../../bower_components/jquery.cookie/jquery.cookie.js"></script>
         <script src="../../bower_components/jquery-placeholder/jquery.placeholder.js"></script>
@@ -33,10 +34,14 @@
         <!-- inject:js -->
         <script src="js/libraries/ioc.js"></script>
         <script src="js/stores/todoStore.js"></script>
+        <script src="js/actions/todoActions.js"></script>
+        <script src="js/eventPublisher.js"></script>
         <!-- endinject -->
 
         <!-- inject:jsx -->
-        <script type="text/jsx" src="js/components/app.react.jsx"></script>
+        <script type="text/jsx" src="js/components/todoAdd.react.jsx"></script>
+        <script type="text/jsx" src="js/components/todoApp.jsx"></script>
+        <script type="text/jsx" src="js/components/todoList.react.jsx"></script>
         <script type="text/jsx" src="js/app.jsx"></script>
         <!-- endinject -->
         <!-- endbuild -->

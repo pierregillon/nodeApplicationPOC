@@ -30,6 +30,7 @@
                 './client/sources/js/libraries/*',
                 './client/sources/js/components/*',
                 './client/sources/js/stores/*',
+                './client/sources/js/actions/*',
                 './client/sources/js/*',
                 './client/sources/css/**/*',
                 '!./client/sources/js/**/*.spec.js'], {read: false}), {relative:true}))

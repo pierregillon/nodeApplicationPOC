@@ -1,23 +1,34 @@
-(function(ioc){
+(function (ioc, EventEmitter) {
     'use strict';
 
     ioc.registerSingleton('TodoStore', TodoStore);
 
-    function TodoStore(){
+    TodoStore.$dependencies = ['EventPublisher'];
+
+    function TodoStore(eventPublisher) {
         var self = this;
+        var todoItems = [];
 
-        self.addChangeListener = function(){
+        EventEmitter.prototype.constructor.call(self);
 
+        self.addChangeListener = function (callback) {
+            self.on('change', callback);
         };
-        self.removeChangeListener = function(){
+        self.removeChangeListener = function (callback) {
+            self.removeListener('change', callback);
+        };
+        self.getTodoItems = function () {
+            return todoItems;
+        };
 
-        };
-        self.getTodoItems = function(){
-            return [
-                {key: 1, value: 'task1'},
-                {key: 2, value: 'task2'}
-            ];
-        };
+        eventPublisher.on('addTodoItem', function (event) {
+            todoItems.push({value: event.text});
+            self.emit('change');
+        });
     }
 
-}(ioc));
+    TodoStore.prototype = Object.create(EventEmitter.prototype);
+    TodoStore.prototype.constructor = EventEmitter;
+    TodoStore.prototype.baseClass = EventEmitter.prototype;
+
+}(ioc, EventEmitter));
