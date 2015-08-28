@@ -3,10 +3,11 @@
 
     describe('A todostore', function(){
         var todoStore;
+        var eventPublisher = {on:function(){}};
 
-        beforeEach(function(){
-           todoStore = ioc.getInstance('TodoStore');
-        });
+        beforeEach(ioc.classes(function(TodoStore){
+            todoStore = new TodoStore(eventPublisher);
+        }));
 
         it('should be defined', function(){
             expect(todoStore).toBeDefined();

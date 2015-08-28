@@ -1,7 +1,7 @@
 (function (React, ioc) {
     'use strict';
 
-    ioc.registerSingleton('TodoApp', TodoApp);
+    ioc.registerClass('TodoApp', TodoApp);
 
     TodoApp.$dependencies = ['TodoList', 'TodoAdd'];
 

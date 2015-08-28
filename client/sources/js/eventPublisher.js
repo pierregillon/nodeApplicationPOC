@@ -1,7 +1,7 @@
 (function(ioc) {
     'use strict';
 
-    ioc.registerSingleton('EventPublisher', EventPublisher);
+    ioc.registerClass('EventPublisher', EventPublisher);
 
     function EventPublisher() {
         var self = this;

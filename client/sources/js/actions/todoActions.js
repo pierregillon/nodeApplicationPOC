@@ -1,7 +1,7 @@
 (function(ioc){
     'use strict';
 
-    ioc.registerSingleton('TodoActions', TodoActions);
+    ioc.registerClass('TodoActions', TodoActions);
 
     TodoActions.$dependencies = ['EventPublisher'];
 
