@@ -1,1 +1,0 @@
-!function(e,t){"use strict";var n=e.createClass({displayName:"HomeController",render:function(){return e.createElement("div",null,"Hello ",this.props.name)}});e.render(e.createElement(n,{name:"John"}),t.getElementById("root"))}(React,document);
