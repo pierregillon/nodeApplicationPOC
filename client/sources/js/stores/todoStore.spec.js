@@ -1,11 +1,11 @@
-(function(ioc){
+(function(angioc){
     'use strict';
 
     describe('A todostore', function(){
         var todoStore;
         var eventPublisher = {on:function(){}};
 
-        beforeEach(ioc.classes(function(TodoStore){
+        beforeEach(angioc.definition(function(TodoStore){
             todoStore = new TodoStore(eventPublisher);
         }));
 
@@ -18,4 +18,4 @@
         });
     });
 
-}(ioc));
+}(angioc));

@@ -1,9 +1,11 @@
-(function (ioc, EventEmitter) {
+(function (angioc, EventEmitter) {
     'use strict';
 
-    ioc.registerClass('TodoStore', TodoStore);
-
-    TodoStore.$dependencies = ['EventPublisher'];
+    angioc
+        .register('TodoStore', TodoStore)
+        .asClass()
+        .asSingleton()
+        .withDependencies(['EventPublisher']);
 
     function TodoStore(eventPublisher) {
         var self = this;
@@ -31,4 +33,4 @@
     TodoStore.prototype.constructor = EventEmitter;
     TodoStore.prototype.baseClass = EventEmitter.prototype;
 
-}(ioc, EventEmitter));
+}(angioc, EventEmitter));

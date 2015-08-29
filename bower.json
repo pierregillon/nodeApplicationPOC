@@ -17,6 +17,7 @@
   "dependencies": {
     "eventEmitter": "~4.2.11",
     "foundation": "~5.5.2",
-    "react": "~0.13.3"
+    "react": "~0.13.3",
+    "angioc": "*"
   }
 }

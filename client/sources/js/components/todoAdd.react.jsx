@@ -1,9 +1,11 @@
-(function (React, ioc) {
+(function (React, angioc) {
     'use strict';
 
-    ioc.registerClass('TodoAdd', TodoAdd);
-
-    TodoAdd.$dependencies = ['TodoActions'];
+    angioc
+        .register('TodoAdd', TodoAdd)
+        .asClass()
+        .asSingleton()
+        .withDependencies(['TodoActions']);
 
     function TodoAdd(todoActions) {
         return React.createClass({
@@ -32,4 +34,4 @@
         }
     }
 
-}(React, ioc));
+}(React, angioc));

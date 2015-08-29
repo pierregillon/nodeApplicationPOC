@@ -28,7 +28,6 @@
         return gulp
             .src('./client/sources/index.html')
             .pipe(inject(gulp.src([
-                './client/sources/js/libraries/*',
                 './client/sources/js/components/*',
                 './client/sources/js/stores/*',
                 './client/sources/js/actions/*',
@@ -80,7 +79,6 @@
         var result = [];
         result = result.concat(wiredepSync({}).js);
         result = result.concat([
-            './client/sources/js/libraries/*',
             './client/sources/js/**/*.js',
             './client/sources/js/**/*.spec.js']);
         return result;

@@ -1,11 +1,11 @@
-(function(React, ioc){
+(function(React, angioc){
     'use strict';
 
-    ioc.resolve(['TodoApp'], function(TodoApp){
+    angioc.resolve(['TodoApp'], function(TodoApp){
         React.render(
             <TodoApp />,
             document.getElementById('root')
         );
     });
 
-}(React, ioc));
+}(React, angioc));

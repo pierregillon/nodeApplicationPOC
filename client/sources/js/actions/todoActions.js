@@ -1,9 +1,11 @@
-(function(ioc){
+(function(angioc){
     'use strict';
 
-    ioc.registerClass('TodoActions', TodoActions);
-
-    TodoActions.$dependencies = ['EventPublisher'];
+    angioc
+        .register('TodoActions', TodoActions)
+        .asClass()
+        .asSingleton()
+        .withDependencies(['EventPublisher']);
 
     function TodoActions(eventPublisher){
         var self = this;
@@ -15,4 +17,4 @@
             });
         };
     }
-}(ioc));
+}(angioc));

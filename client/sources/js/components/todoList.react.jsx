@@ -1,9 +1,11 @@
-(function (React, ioc) {
+(function (React, angioc) {
     'use strict';
 
-    ioc.registerClass('TodoList', TodoList);
-
-    TodoList.$dependencies = ['TodoStore'];
+    angioc
+        .register('TodoList', TodoList)
+        .asClass()
+        .asSingleton()
+        .withDependencies(['TodoStore']);
 
     function TodoList(todoStore) {
         return React.createClass({
@@ -39,4 +41,4 @@
             };
         }
     }
-}(React, ioc));
+}(React, angioc));
