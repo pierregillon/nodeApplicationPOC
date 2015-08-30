@@ -13,11 +13,13 @@
     "test",
     "tests"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "angioc-mocks": "*"
+  },
   "dependencies": {
+    "angioc": "~0.0.3",
     "eventEmitter": "~4.2.11",
     "foundation": "~5.5.2",
-    "react": "~0.13.3",
-    "angioc": "*"
+    "react": "~0.13.3"
   }
 }

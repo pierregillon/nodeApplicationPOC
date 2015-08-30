@@ -77,7 +77,7 @@
     // ----- Internal logic
     function getClientFilesToTests(){
         var result = [];
-        result = result.concat(wiredepSync({}).js);
+        result = result.concat(wiredepSync({devDependencies:true}).js);
         result = result.concat([
             './client/sources/js/**/*.js',
             './client/sources/js/**/*.spec.js']);
