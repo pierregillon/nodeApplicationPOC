@@ -14,10 +14,10 @@
     "tests"
   ],
   "devDependencies": {
-    "angioc-mocks": "*"
+    "angioc-mocks": "~0.0.2"
   },
   "dependencies": {
-    "angioc": "~0.0.3",
+    "angioc": "~0.0.4",
     "eventEmitter": "~4.2.11",
     "foundation": "~5.5.2",
     "react": "~0.13.3"
