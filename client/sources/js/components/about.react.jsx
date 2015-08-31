@@ -1,24 +1,22 @@
-(function (React, angioc) {
+(function(angioc){
     'use strict';
 
     angioc
-        .register('TodoApp', TodoApp)
+        .register('AboutView', About)
         .asClass()
         .asSingleton()
-        .withDependencies(['TodoList', 'TodoAdd', 'SiteMap']);
+        .withDependencies(['SiteMap']);
 
-    function TodoApp(TodoList, TodoAdd, SiteMap) {
+    function About(SiteMap){
         return React.createClass({
             render: function () {
                 return (
                     <div>
                         <SiteMap />
-                        <TodoAdd />
-                        <TodoList />
+                        <h2>About</h2>
                     </div>
                 );
             }
         });
     }
-
-}(React, angioc));
+}(angioc));
