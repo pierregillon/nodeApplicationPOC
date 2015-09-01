@@ -1,3 +1,33 @@
-body {
+.header {
+    position: relative;
+    background-color: antiquewhite;
+    height: 50px;
+}
 
+.footer {
+    background-color: antiquewhite;
+    height: 50px;
+}
+
+.sitemap {
+    display: inline-block;
+    width: 20%;
+    background-color: lightyellow;
+    height: 500px;
+    position: relative;
+    vertical-align: top;
+}
+
+.body {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    width: 100%;
+}
+
+.content {
+    display: inline-block;
+    position: relative;
+    background-color: aliceblue;
+    width: 80%;
 }
