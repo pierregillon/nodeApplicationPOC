@@ -1,22 +1,10 @@
-(function(React, angioc, ReactRouter){
+(function(React, angioc, Router){
     'use strict';
 
-    var Router = ReactRouter;
-    var Route = ReactRouter.Route;
-    var DefaultRoute = ReactRouter.DefaultRoute;
-
-    angioc.resolve(['TodoApp', 'AboutView'], function(TodoApp, AboutView){
-
-        var routes = (
-            <Route path="/">
-                <DefaultRoute handler={TodoApp} />
-                <Route name="todo" handler={TodoApp} />
-                <Route name="about" handler={AboutView} />
-            </Route>
-        );
-
-        Router.run(routes, function (Handler) {
-            React.render(<Handler/>, document.getElementById('root'));
+    angioc.resolve(['RouteFactory'], function(routeFactory){
+        var routes = routeFactory.getRoutes();
+        Router.run(routes, Router.HashLocation, function (Root) {
+            React.render(<Root/>, document.getElementById('root'));
         });
     });
 

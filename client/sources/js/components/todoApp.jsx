@@ -5,20 +5,16 @@
         .register('TodoApp', TodoApp)
         .asClass()
         .asSingleton()
-        .withDependencies(['TodoList', 'TodoAdd', 'SiteMap', 'HeaderView']);
+        .withDependencies(['TodoList', 'TodoAdd']);
 
-    function TodoApp(TodoList, TodoAdd, SiteMap, Header) {
+    function TodoApp(TodoList, TodoAdd) {
         return React.createClass({
             render: function () {
                 return (
                     <div>
-                        <Header />
-                        <SiteMap />
-                        <div className="content">
-                            <h2>Todo list : </h2>
-                            <TodoAdd />
-                            <TodoList />
-                        </div>
+                        <h2>Todo list : </h2>
+                        <TodoAdd />
+                        <TodoList />
                     </div>
                 );
             }
