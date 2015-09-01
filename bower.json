@@ -22,5 +22,10 @@
     "foundation": "~5.5.2",
     "react": "~0.13.3",
     "react-router": "~0.13.3"
+  },
+  "overrides": {
+    "react": {
+      "main": "react-with-addons.js"
+    }
   }
 }

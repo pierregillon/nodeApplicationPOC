@@ -1,5 +1,7 @@
-(function(angioc, RouteHandler){
+(function(angioc, Router, RouteHandler){
     'use strict';
+
+    var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
     angioc
         .register('Template', Template)
@@ -10,16 +12,19 @@
     function Template(SiteMap, Header){
         return React.createClass({
             render : function() {
+                var key = window.location.hash;
                 return (
                     <div>
                         <Header />
                         <SiteMap />
                         <div className="content">
-                            <RouteHandler/>
+                            <ReactCSSTransitionGroup transitionName="pageTransition" transitionLeave={false}>
+                                <RouteHandler key={key}/>
+                            </ReactCSSTransitionGroup>
                         </div>
                     </div>
                 )
             }
         });
     }
-}(angioc, ReactRouter.RouteHandler));
+}(angioc, ReactRouter, ReactRouter.RouteHandler));

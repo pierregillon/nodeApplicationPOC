@@ -31,3 +31,22 @@
     background-color: aliceblue;
     width: 80%;
 }
+
+.pagetransition-enter {
+    opacity: 0;
+}
+
+.pagetransition-enter.pagetransition-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in-out;
+}
+
+.pagetransition-leave {
+    opacity: 1;
+    transition: opacity 10ms ease-in;
+}
+
+.pagetransition-leave.pagetransition-leave-active {
+    opacity: 0;
+    transition: opacity 10ms ease-in;
+}
