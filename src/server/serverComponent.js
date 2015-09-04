@@ -24,15 +24,7 @@
         self.start = function(port){
             var app = express();
 
-            app.use(express.static('../client/dist'));
-
-            app.get('/scripts/bundle.js', function(req, res){
-                res.sendFile(path.join(__dirname, '../../dist/bundle.js'));
-            });
-
-            app.get('/styles/bundle.css', function(req, res){
-                res.sendFile(path.join(__dirname, '../client/css/style.css'));
-            });
+            app.use(express.static('./dist'));
 
             app.get('/*', function (req, res) {
                 angioc.resolve(['routes'], function(routeFactory){
