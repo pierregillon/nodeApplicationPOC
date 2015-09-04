@@ -14,6 +14,7 @@
     var usemin = require('gulp-usemin');
     var rev = require('gulp-rev');
     var react = require('gulp-react');
+    var clean = require('gulp-clean');
 
     // ----- Files injection
     gulp.task('inject-library-files', function () {
@@ -39,7 +40,12 @@
     gulp.task('inject-files', ['inject-library-files', 'inject-application-files']);
 
     // ----- Build dist
-    gulp.task('build-client', function () {
+    gulp.task('clean', function(){
+        return gulp
+            .src('./client/dist', {read: false})
+            .pipe(clean());
+    });
+    gulp.task('build-client', ['clean'], function () {
         return gulp.src('./client/sources/index.html')
             .pipe(usemin({
                 applicationCss: [minifyCss(), rev()],
