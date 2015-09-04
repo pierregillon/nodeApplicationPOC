@@ -1,5 +1,5 @@
 (function(process, require){
-    var ServerComponent = require('./server/serverComponent');
+    var ServerComponent = require('./src/server/serverComponent');
 
     var port = process.env.PORT || 1337;
     var component = new ServerComponent();

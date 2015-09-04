@@ -1,11 +1,8 @@
-(function (React, angioc) {
+(function(module, require){
     'use strict';
+    module.exports = TodoAdd;
 
-    angioc
-        .register('TodoAdd', TodoAdd)
-        .asClass()
-        .asSingleton()
-        .withDependencies(['TodoActions']);
+    var React = require('react');
 
     function TodoAdd(todoActions) {
         return React.createClass({
@@ -34,4 +31,4 @@
         }
     }
 
-}(React, angioc));
+}(module, require));

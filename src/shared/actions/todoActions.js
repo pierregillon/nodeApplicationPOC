@@ -1,11 +1,6 @@
-(function(angioc){
+(function(module){
     'use strict';
-
-    angioc
-        .register('TodoActions', TodoActions)
-        .asClass()
-        .asSingleton()
-        .withDependencies(['EventPublisher']);
+    module.exports = TodoActions;
 
     function TodoActions(eventPublisher){
         var self = this;
@@ -17,4 +12,4 @@
             });
         };
     }
-}(angioc));
+}(module));

@@ -1,11 +1,8 @@
-(function (React, angioc) {
+(function(module, require){
     'use strict';
+    module.exports = TodoList;
 
-    angioc
-        .register('TodoList', TodoList)
-        .asClass()
-        .asSingleton()
-        .withDependencies(['TodoStore']);
+    var React = require('react');
 
     function TodoList(todoStore) {
         return React.createClass({
@@ -41,4 +38,4 @@
             };
         }
     }
-}(React, angioc));
+}(module, require));

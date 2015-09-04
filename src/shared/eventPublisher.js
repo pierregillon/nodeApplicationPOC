@@ -1,10 +1,6 @@
-(function(angioc) {
+(function(module, require){
     'use strict';
-
-    angioc
-        .register('EventPublisher', EventPublisher)
-        .asClass()
-        .asSingleton();
+    module.exports = EventPublisher;
 
     function EventPublisher() {
         var self = this;
@@ -29,4 +25,4 @@
             self.eventRegistry[eventName].push(action);
         }
     }
-})(angioc);
+})(module, require);

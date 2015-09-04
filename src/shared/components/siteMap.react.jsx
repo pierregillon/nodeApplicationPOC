@@ -1,12 +1,10 @@
-(function(angioc, ReactRouter){
+(function(module, require){
     'use strict';
+    module.exports = SiteMap;
 
+    var React = require('react');
+    var ReactRouter = require('react-router');
     var Link = ReactRouter.Link;
-
-    angioc
-        .register('SiteMap', SiteMap)
-        .asClass()
-        .asSingleton();
 
     function SiteMap(){
         return React.createClass({
@@ -26,4 +24,4 @@
             }
         });
     }
-}(angioc, ReactRouter));
+}(module, require));

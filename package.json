@@ -9,10 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "angioc": "0.0.4",
+    "events": "^1.0.2",
+    "express": "^4.13.3",
+    "node-jsx": "^0.13.3",
+    "q": "^1.4.1",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3"
   },
   "devDependencies": {
     "bower": "^1.5.2",
+    "browserify": "^11.0.1",
     "chai": "^3.2.0",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
@@ -33,6 +40,14 @@
     "karma-spec-reporter": "0.0.20",
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.18",
+    "reactify": "^1.1.1",
+    "uglifyify": "^3.0.1",
+    "vinyl-source-stream": "^1.1.0",
     "wiredep": "^2.2.2"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
   }
 }

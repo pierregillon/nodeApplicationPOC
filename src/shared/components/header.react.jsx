@@ -1,10 +1,8 @@
-(function(angioc){
+(function(module, require){
     'use strict';
-
-    angioc
-        .register('HeaderView', About)
-        .asClass()
-        .asSingleton();
+    module.exports = About;
+    
+    var React = require('react');
 
     function About(){
         return React.createClass({
@@ -17,4 +15,4 @@
             }
         });
     }
-}(angioc));
+}(module, require));

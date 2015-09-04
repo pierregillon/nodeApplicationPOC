@@ -1,11 +1,8 @@
-(function(angioc){
+(function(module, require){
     'use strict';
+    module.exports = About;
 
-    angioc
-        .register('AboutView', About)
-        .asClass()
-        .asSingleton()
-        .withDependencies([]);
+    var React = require('react');
 
     function About(){
         return React.createClass({
@@ -32,4 +29,4 @@
             }
         });
     }
-}(angioc));
+}(module, require));

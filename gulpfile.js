@@ -16,6 +16,9 @@
     var react = require('gulp-react');
     var clean = require('gulp-clean');
 
+    var browserify = require('browserify');
+    var source = require('vinyl-source-stream');
+
     // ----- Files injection
     gulp.task('inject-library-files', function () {
         return gulp
@@ -55,6 +58,12 @@
                 html: [minifyHtml({empty: true})]
             }))
             .pipe(gulp.dest('./client/dist'));
+    });
+    gulp.task('b', function(){
+        return browserify('./src/client/js/app.jsx')
+            .bundle()
+            .pipe(source('bundle.js'))
+            .pipe(gulp.dest('./dist/'));
     });
 
     // ----- Tests

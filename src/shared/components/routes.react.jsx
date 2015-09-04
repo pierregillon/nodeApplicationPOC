@@ -1,14 +1,11 @@
-(function(angioc, ReactRouter){
+(function(module, require){
     'use strict';
+    module.exports = RouteFactory;
 
+    var React = require('react');
+    var ReactRouter = require('react-router');
     var Route = ReactRouter.Route;
     var DefaultRoute = ReactRouter.DefaultRoute;
-
-    angioc
-        .register('RouteFactory', RouteFactory)
-        .asClass()
-        .asSingleton()
-        .withDependencies(['Template', 'TodoApp', 'AboutView']);
 
     function RouteFactory(Template, TodoApp, About){
         var self = this;
@@ -24,4 +21,4 @@
         }
     }
 
-}(angioc, ReactRouter));
+}(module, require));
