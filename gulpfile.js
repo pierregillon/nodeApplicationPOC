@@ -16,14 +16,14 @@
             .pipe(vinylPaths(del));
     });
     gulp.task('build-scripts', function(){
-        return browserify('./src/client/js/app.jsx')
+        return browserify('./src/client/app.jsx')
             .bundle()
             .pipe(source('bundle.js'))
             .pipe(gulp.dest('./dist/scripts/'));
     });
     gulp.task('build-styles', function(){
         return gulp
-            .src('./src/client/css/**/*.css')
+            .src('./src/client/**/*.css')
             .pipe(concatCss('bundle.css'))
             .pipe(gulp.dest('./dist/styles/'));
     });

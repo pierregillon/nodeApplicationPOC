@@ -4,7 +4,7 @@
     var React = require('react');
     var Router = require('react-router');
     var angioc = require('angioc');
-    var Bootstrapper = require('../../shared/bootstrapper');
+    var Bootstrapper = require('../shared/bootstrapper');
 
     var bootstrapper = new Bootstrapper();
     bootstrapper.boot();

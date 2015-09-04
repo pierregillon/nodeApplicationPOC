@@ -18,7 +18,6 @@
     function ServerComponent(){
         var self = this;
         var server;
-
         var template = new Template('../client/index.html');
 
         self.start = function(port){
