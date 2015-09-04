@@ -1,5 +1,7 @@
-(function(angioc){
+(function(angioc, ReactRouter){
     'use strict';
+
+    var Link = ReactRouter.Link;
 
     angioc
         .register('SiteMap', SiteMap)
@@ -12,12 +14,16 @@
                 return (
                     <div className="siteMap">
                         <ul>
-                            <li><a href="#/todo">Todo application</a></li>
-                            <li><a href="#/about">About</a></li>
+                            <li>
+                                <Link to="todo">Todo application</Link>
+                            </li>
+                            <li>
+                                <Link to="about">About</Link>
+                            </li>
                         </ul>
                     </div>
                 );
             }
         });
     }
-}(angioc));
+}(angioc, ReactRouter));

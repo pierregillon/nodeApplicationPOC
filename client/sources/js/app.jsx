@@ -3,7 +3,7 @@
 
     angioc.resolve(['RouteFactory'], function(routeFactory){
         var routes = routeFactory.getRoutes();
-        Router.run(routes, Router.HashLocation, function (Root) {
+        Router.run(routes, Router.HistoryLocation, function (Root) {
             React.render(<Root/>, document.getElementById('root'));
         });
     });
