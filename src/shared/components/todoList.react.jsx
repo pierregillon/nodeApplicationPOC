@@ -4,26 +4,8 @@
 
     var React = require('react');
     var Table = require('react-bootstrap').Table;
-    var Button = require('react-bootstrap').Button;
 
-    function TodoList(todoStore, todoActions) {
-
-        var TodoItem = React.createClass({
-            render:function(){
-                return (
-                    <tr>
-                        <td> {this.props.data.value} </td>
-                        <td>
-                            <Button bsStyle='danger' onClick={this.removeTodoItem}>Remove</Button>
-                        </td>
-                    </tr>
-                )
-            },
-            removeTodoItem: function () {
-                todoActions.removeTodo(this.props.data);
-            }
-        });
-
+    function TodoList(TodoItem, todoStore, todoActions) {
         return React.createClass({
             getInitialState : function () {
                 return buildState();
@@ -45,16 +27,20 @@
                         </thead>
                         <tbody>
                             {this.state.todoItems.map(function(item){
+                                var boundClick = this.removeTodoItem.bind(this, item);
                                 return (
-                                    <TodoItem key={item.id} data={item}/>
+                                    <TodoItem key={item.id} data={item} onRemoveRequested={boundClick}/>
                                 );
-                            })}
+                            }, this)}
                         </tbody>
                     </Table>
                 );
             },
             onChange : function () {
                 this.setState(buildState());
+            },
+            removeTodoItem: function (item) {
+                todoActions.removeTodo(item);
             }
         });
 
