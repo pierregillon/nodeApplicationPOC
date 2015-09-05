@@ -14,8 +14,17 @@
             render: function () {
                 return (
                     <div>
-                        <Input type='text' label='Enter a new task name to do :' placeholder='Task name' value={this.state.value} onChange={this.handleChange}/>
-                        <Button bsStyle='primary' onClick={this.addToCart}>Add</Button>
+                        <Input
+                            type='text'
+                            label='Enter a new task name to do :'
+                            placeholder='Task name'
+                            value={this.state.value}
+                            onChange={this.handleChange}
+                            onKeyDown={this.handleInput} />
+
+                        <Button
+                            bsStyle='primary'
+                            onClick={this.addToCart}>Add</Button>
                     </div>
                 );
             },
@@ -25,6 +34,11 @@
             },
             handleChange: function (event) {
                 this.setState(buildState(event.target.value.substr(0, 140)));
+            },
+            handleInput: function(evt) {
+                if (evt.keyCode == 13 ) {
+                    this.addToCart();
+                }
             }
         });
 
