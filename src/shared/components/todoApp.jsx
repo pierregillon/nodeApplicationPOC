@@ -3,15 +3,21 @@
     module.exports = TodoApp;
 
     var React = require('react');
+    var Panel = require('react-bootstrap').Panel;
+    var PageHeader = require('react-bootstrap').PageHeader;
 
     function TodoApp(TodoList, TodoAdd) {
         return React.createClass({
             render: function () {
                 return (
                     <div>
-                        <h2>Todo list : </h2>
-                        <TodoAdd />
-                        <TodoList />
+                        <PageHeader>Todo list <small> - Add new and consult existing</small></PageHeader>
+                        <Panel header='Add a new todo item' bsStyle='info'>
+                            <TodoAdd />
+                        </Panel>
+                        <Panel header='Existing todo items' bsStyle='info'>
+                            <TodoList />
+                        </Panel>
                     </div>
                 );
             }
