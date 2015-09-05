@@ -11,5 +11,12 @@
                 text: text
             });
         };
+
+        self.removeTodo = function(item){
+            eventPublisher.publish({
+                name: 'removeTodoItem',
+                itemId: item.id
+            });
+        };
     }
 }(module));

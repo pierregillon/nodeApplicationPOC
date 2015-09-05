@@ -3,6 +3,8 @@
     module.exports = TodoAdd;
 
     var React = require('react');
+    var Input = require('react-bootstrap').Input;
+    var Button = require('react-bootstrap').Button;
 
     function TodoAdd(todoActions) {
         return React.createClass({
@@ -12,13 +14,14 @@
             render: function () {
                 return (
                     <div>
-                        <input type="text" value={this.state.value} onChange={this.handleChange}></input>
-                        <button type="button" onClick={this.addToCart}>Add</button>
+                        <Input type='text' label='Enter a new task name to do :' placeholder='Task name' value={this.state.value} onChange={this.handleChange}/>
+                        <Button bsStyle='primary' onClick={this.addToCart}>Add</Button>
                     </div>
                 );
             },
             addToCart: function () {
                 todoActions.addTodo(this.state.value);
+                this.setState(buildState());
             },
             handleChange: function (event) {
                 this.setState(buildState(event.target.value.substr(0, 140)));

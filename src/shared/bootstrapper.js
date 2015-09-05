@@ -16,7 +16,7 @@
             registerSingleton('template', require('./components/template.react.jsx'), ['siteMap', 'header']);
             registerSingleton('todoAdd', require('./components/todoAdd.react.jsx'), ['todoActions']);
             registerSingleton('todoApp', require('./components/todoApp.jsx'), ['todoList', 'todoAdd']);
-            registerSingleton('todoList', require('./components/todoList.react.jsx'), ['todoStore']);
+            registerSingleton('todoList', require('./components/todoList.react.jsx'), ['todoStore', 'todoActions']);
             registerSingleton('todoStore', require('./stores/todoStore'), ['eventPublisher']);
             registerSingleton('eventPublisher', require('./eventPublisher'), []);
         };
