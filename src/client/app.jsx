@@ -9,7 +9,8 @@
     var bootstrapper = new Bootstrapper();
     bootstrapper.boot();
 
-    angioc.resolve(['routes'], function(routeFactory){
+    angioc.resolve(['todoActions', 'routes'], function(todoActions, routeFactory){
+        todoActions.loadTodoItems();
         var routes = routeFactory.getRoutes();
         Router.run(routes, Router.HistoryLocation, function (Root) {
             React.render(<Root/>, document.getElementById('root'));

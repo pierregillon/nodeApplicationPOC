@@ -3,6 +3,7 @@
     module.exports = TodoStore;
 
     var EventEmitter = require('events').EventEmitter;
+    var _ = require('lodash');
 
     var lastTodoId = 0;
 
@@ -21,6 +22,12 @@
         self.getTodoItems = function () {
             return todoItems;
         };
+
+        eventPublisher.on('getAllTodoItems', function (event) {
+            todoItems = event.todoItems;
+            lastTodoId = _.max(_.pluck(todoItems, 'id'));
+            self.emit('change');
+        });
 
         eventPublisher.on('addTodoItem', function (event) {
             todoItems.push({id: ++lastTodoId, value: event.text});

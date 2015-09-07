@@ -12,6 +12,7 @@
     "angioc": "0.0.4",
     "events": "^1.0.2",
     "express": "^4.13.3",
+    "lodash": "^3.10.1",
     "node-jsx": "^0.13.3",
     "q": "^1.4.1",
     "react": "^0.13.3",
@@ -29,6 +30,7 @@
     "reactify": "^1.1.1",
     "run-sequence": "^1.1.2",
     "uglifyify": "^3.0.1",
+    "vinyl-paths": "^2.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
   "browserify": {

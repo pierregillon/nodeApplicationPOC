@@ -8,7 +8,7 @@
         var self = this;
 
         self.boot = function(){
-            registerSingleton('todoActions', require('./actions/todoActions'), ['eventPublisher']);
+            registerSingleton('todoActions', require('./actions/todoActions'), ['eventPublisher', 'todoDataService']);
             registerSingleton('about',  require('./components/about.react.jsx'), []);
             registerSingleton('header', require('./components/header.react.jsx'), []);
             registerSingleton('routes', require('./components/routes.react.jsx'), ['template', 'todoApp', 'about']);
@@ -20,6 +20,7 @@
             registerSingleton('todoItem', require('./components/todoItem.react.jsx'), []);
             registerSingleton('todoStore', require('./stores/todoStore'), ['eventPublisher']);
             registerSingleton('eventPublisher', require('./eventPublisher'), []);
+            registerSingleton('todoDataService', require('./services/todoDataService'), []);
         };
 
         function registerSingleton(name, func, dependencyNames){
