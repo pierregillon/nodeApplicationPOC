@@ -6,10 +6,14 @@
         var self = this;
 
         self.addTodo = function(text){
-            eventPublisher.publish({
-                name: 'addTodoItem',
-                text: text
-            });
+            todoDataService
+                .addTodoItem(text)
+                .then(function(newTodoItem){
+                    eventPublisher.publish({
+                        name: 'addTodoItem',
+                        item: newTodoItem
+                    });
+                });
         };
 
         self.removeTodo = function(item){
@@ -27,7 +31,7 @@
                         name: 'getAllTodoItems',
                         todoItems : items
                     });
-                })
+                });
         };
     }
 }(module));

@@ -5,8 +5,6 @@
     var EventEmitter = require('events').EventEmitter;
     var _ = require('lodash');
 
-    var lastTodoId = 0;
-
     function TodoStore(eventPublisher) {
         var self = this;
         var todoItems = [];
@@ -24,13 +22,12 @@
         };
 
         eventPublisher.on('getAllTodoItems', function (event) {
-            todoItems = event.todoItems;
-            lastTodoId = _.max(_.pluck(todoItems, 'id'));
+            todoItems = [].concat(event.todoItems);
             self.emit('change');
         });
 
         eventPublisher.on('addTodoItem', function (event) {
-            todoItems.push({id: ++lastTodoId, value: event.text});
+            todoItems.push(event.item);
             self.emit('change');
         });
 
