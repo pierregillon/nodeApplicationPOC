@@ -18,22 +18,27 @@
             },
             render : function () {
                 return (
-                    <Table striped bordered condensed hover>
-                        <thead>
+                    <div>
+                        <div style={this.state.todoItems.length == 0 ? undefined : {display : 'none'}}>
+                            There is currently no tasks to do.
+                        </div>
+                        <Table striped bordered condensed hover style={this.state.todoItems.length == 0 ? {display : 'none'} : undefined}>
+                            <thead>
                             <tr>
                                 <th>Item</th>
                                 <th>Action</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             {this.state.todoItems.map(function(item){
                                 var boundClick = this.removeTodoItem.bind(this, item);
                                 return (
                                     <TodoItem key={item.id} data={item} onRemoveRequested={boundClick}/>
                                 );
                             }, this)}
-                        </tbody>
-                    </Table>
+                            </tbody>
+                        </Table>
+                    </div>
                 );
             },
             onChange : function () {
