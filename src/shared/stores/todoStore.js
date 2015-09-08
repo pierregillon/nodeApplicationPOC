@@ -12,6 +12,7 @@
         EventEmitter.prototype.constructor.call(self);
 
         self.isAddingItem = false;
+        self.isRemovingItem = false;
         self.addChangeListener = function (callback) {
             self.on('change', callback);
         };
@@ -40,10 +41,16 @@
                     self.emit('change');
                     break;
 
+                case 'removingTodoItem':
+                    self.isRemovingItem = true;
+                    self.emit('change');
+                    break;
+
                 case 'removeTodoItem':
                     _.remove(todoItems, function(item){
                         return item.id === payload.itemId
                     });
+                    self.isRemovingItem = false;
                     self.emit('change');
                     break;
             }

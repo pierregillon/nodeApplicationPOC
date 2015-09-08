@@ -22,7 +22,7 @@
                         <thead>
                             <tr>
                                 <th>Item</th>
-                                <th width={100}>Action</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

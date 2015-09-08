@@ -23,7 +23,7 @@
         },
 
         doAction : function(){
-            if(this.props.isLoading === false && this.props.onClick){
+            if(!this.props.isLoading && this.props.onClick){
                 this.props.onClick();
             }
         }

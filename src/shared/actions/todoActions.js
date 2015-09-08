@@ -20,6 +20,9 @@
         };
 
         self.removeTodo = function(item){
+            dispatcher.dispatch({
+                actionType: 'removingTodoItem'
+            });
             todoDataService
                 .removeTodoItem(item.id)
                 .then(function(){

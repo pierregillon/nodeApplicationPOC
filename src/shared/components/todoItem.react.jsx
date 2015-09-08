@@ -5,18 +5,23 @@
     var React = require('react');
     var Button = require('react-bootstrap').Button;
     var Modal = require('react-bootstrap').Modal;
+    var ButtonLoader = require('../ui/buttonLoader');
 
-    function TodoItem() {
+    function TodoItem(todoStore) {
         return React.createClass({
             getInitialState : function(){
-                return { showModal : false };
+                return buildState(false);
             },
             render:function(){
                 return (
                     <tr>
                         <td> {this.props.data.value} </td>
-                        <td>
-                            <Button bsStyle='danger' onClick={this.openConfirmationPopup}>Remove</Button>
+                        <td width={120}>
+                            <ButtonLoader
+                                isLoading={this.state.isRemoving}
+                                loadingText='Removing ...'
+                                bsStyle='danger'
+                                onClick={this.openConfirmationPopup}>Remove</ButtonLoader>
 
                             <Modal show={this.state.showModal} onHide={this.closeConfirmationPopup}>
                                 <Modal.Header>
@@ -39,11 +44,18 @@
                 this.closeConfirmationPopup();
             },
             openConfirmationPopup : function(){
-                this.setState({showModal: true});
+                this.setState(buildState(true));
             },
             closeConfirmationPopup : function(){
-                this.setState({showModal: false});
+                this.setState(buildState(false));
             }
         });
+
+        function buildState(showModal){
+            return {
+                showModal : showModal,
+                isRemoving : todoStore.isRemovingItem
+            }
+        }
     }
 }(module, require));
