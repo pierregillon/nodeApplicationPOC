@@ -4,7 +4,7 @@
 
     var React = require('react');
     var Input = require('react-bootstrap').Input;
-    var Button = require('react-bootstrap').Button;
+    var ButtonLoader = require('../ui/buttonLoader');
 
     function TodoAdd(todoActions, todoStore) {
         return React.createClass({
@@ -28,10 +28,11 @@
                             onChange={this.handleChange}
                             onKeyDown={this.handleInput} />
 
-                        <Button
-                            className={this.state.isAdding ? 'disabled' : '' }
+                        <ButtonLoader
+                            isLoading={this.state.isAdding}
+                            loadingText='Adding ...'
                             bsStyle='primary'
-                            onClick={this.addToCart}> {this.state.isAdding ? "Adding ..." : "Add" } </Button>
+                            onClick={this.addToCart}> Add </ButtonLoader>
                     </div>
                 );
             },
