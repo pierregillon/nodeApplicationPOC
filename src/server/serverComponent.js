@@ -9,6 +9,8 @@
     var React = require('react');
     var Router = require('react-router');
     var Template = require('./template');
+    var TodoApi = require('./todoApi');
+    var bodyParser = require('body-parser');
 
     var angioc = require('angioc');
     var Bootstrapper = require('../shared/bootstrapper');
@@ -19,21 +21,45 @@
         var self = this;
         var server;
         var template = new Template('../client/index.html');
+        var api = new TodoApi();
 
         self.start = function(port){
             var app = express();
 
             app.use(express.static('./dist'));
+            app.use(bodyParser.json());
+            app.use(bodyParser.urlencoded({ extended: true }));
 
-            app.get('/*', function (req, res) {
+            app.get('/api/todo/all', function(request, response){
+                api
+                    .getTodoItems()
+                    .then(function(todoItems){
+                       response.send(todoItems);
+                   });
+            });
+            app.post('/api/todo/add', function(request, response){
+                api
+                    .addTodoItem(request.body['text'])
+                    .then(function(newItem){
+                        response.send(newItem);
+                    });
+            });
+            app.post('/api/todo/remove', function(request, response){
+                api
+                    .removeTodoItem(request.body['id'])
+                    .then(function(){
+                        response.send('OK');
+                    });
+            });
+            app.get('/*', function (request, response) {
                 angioc.resolve(['routes'], function(routeFactory){
                     var routes = routeFactory.getRoutes();
-                    Router.run(routes, req.url, function(Handler){
+                    Router.run(routes, request.url, function(Handler){
                         var content = React.renderToString(React.createElement(Handler));
                         template
                             .render({app: content})
                             .then(function(rendered){
-                                res.send(rendered);
+                                response.send(rendered);
                             });
                     });
                 });

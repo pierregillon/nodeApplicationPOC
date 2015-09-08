@@ -9,6 +9,7 @@
             todoDataService
                 .addTodoItem(text)
                 .then(function(newTodoItem){
+                    console.log(newTodoItem);
                     dispatcher.dispatch({
                         actionType: 'addTodoItem',
                         item: newTodoItem
@@ -17,10 +18,14 @@
         };
 
         self.removeTodo = function(item){
-            dispatcher.dispatch({
-                actionType: 'removeTodoItem',
-                itemId: item.id
-            });
+            todoDataService
+                .removeTodoItem(item.id)
+                .then(function(){
+                    dispatcher.dispatch({
+                        actionType: 'removeTodoItem',
+                        itemId: item.id
+                    });
+                });
         };
 
         self.loadTodoItems = function(){
