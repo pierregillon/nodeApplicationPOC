@@ -6,8 +6,11 @@
     var Panel = require('react-bootstrap').Panel;
     var PageHeader = require('react-bootstrap').PageHeader;
 
-    function TodoApp(TodoList, TodoAdd) {
+    function TodoApp(todoActions, TodoList, TodoAdd) {
         return React.createClass({
+            componentDidMount : function(){
+                todoActions.loadTodoItems();
+            },
             render: function () {
                 return (
                     <div>

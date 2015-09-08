@@ -15,7 +15,7 @@
             registerSingleton('siteMap', require('./components/siteMap.react.jsx'), []);
             registerSingleton('template', require('./components/template.react.jsx'), ['siteMap', 'header']);
             registerSingleton('todoAdd', require('./components/todoAdd.react.jsx'), ['todoActions']);
-            registerSingleton('todoApp', require('./components/todoApp.jsx'), ['todoList', 'todoAdd']);
+            registerSingleton('todoApp', require('./components/todoApp.jsx'), ['todoActions', 'todoList', 'todoAdd']);
             registerSingleton('todoList', require('./components/todoList.react.jsx'), ['todoItem', 'todoStore', 'todoActions']);
             registerSingleton('todoItem', require('./components/todoItem.react.jsx'), []);
             registerSingleton('todoStore', require('./stores/todoStore'), ['dispatcher']);
