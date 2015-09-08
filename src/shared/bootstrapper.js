@@ -8,7 +8,7 @@
         var self = this;
 
         self.boot = function(){
-            registerSingleton('todoActions', require('./actions/todoActions'), ['eventPublisher', 'todoDataService']);
+            registerSingleton('todoActions', require('./actions/todoActions'), ['dispatcher', 'todoDataService']);
             registerSingleton('about',  require('./components/about.react.jsx'), []);
             registerSingleton('header', require('./components/header.react.jsx'), []);
             registerSingleton('routes', require('./components/routes.react.jsx'), ['template', 'todoApp', 'about']);
@@ -18,8 +18,8 @@
             registerSingleton('todoApp', require('./components/todoApp.jsx'), ['todoList', 'todoAdd']);
             registerSingleton('todoList', require('./components/todoList.react.jsx'), ['todoItem', 'todoStore', 'todoActions']);
             registerSingleton('todoItem', require('./components/todoItem.react.jsx'), []);
-            registerSingleton('todoStore', require('./stores/todoStore'), ['eventPublisher']);
-            registerSingleton('eventPublisher', require('./eventPublisher'), []);
+            registerSingleton('todoStore', require('./stores/todoStore'), ['dispatcher']);
+            registerSingleton('dispatcher', require('./dispatcher'), []);
             registerSingleton('todoDataService', require('./services/todoDataService'), []);
         };
 

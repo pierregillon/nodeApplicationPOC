@@ -2,23 +2,23 @@
     'use strict';
     module.exports = TodoActions;
 
-    function TodoActions(eventPublisher, todoDataService){
+    function TodoActions(dispatcher, todoDataService){
         var self = this;
 
         self.addTodo = function(text){
             todoDataService
                 .addTodoItem(text)
                 .then(function(newTodoItem){
-                    eventPublisher.publish({
-                        name: 'addTodoItem',
+                    dispatcher.dispatch({
+                        actionType: 'addTodoItem',
                         item: newTodoItem
                     });
                 });
         };
 
         self.removeTodo = function(item){
-            eventPublisher.publish({
-                name: 'removeTodoItem',
+            dispatcher.dispatch({
+                actionType: 'removeTodoItem',
                 itemId: item.id
             });
         };
@@ -27,8 +27,8 @@
             todoDataService
                 .getTodoItems()
                 .then(function(items){
-                    eventPublisher.publish({
-                        name: 'getAllTodoItems',
+                    dispatcher.dispatch({
+                        actionType: 'getAllTodoItems',
                         todoItems : items
                     });
                 });

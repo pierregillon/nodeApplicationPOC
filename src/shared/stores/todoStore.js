@@ -3,9 +3,8 @@
     module.exports = TodoStore;
 
     var EventEmitter = require('events').EventEmitter;
-    var _ = require('lodash');
 
-    function TodoStore(eventPublisher) {
+    function TodoStore(dispatcher) {
         var self = this;
         var todoItems = [];
 
@@ -21,26 +20,28 @@
             return todoItems;
         };
 
-        eventPublisher.on('getAllTodoItems', function (event) {
-            todoItems = [].concat(event.todoItems);
-            self.emit('change');
-        });
-
-        eventPublisher.on('addTodoItem', function (event) {
-            todoItems.push(event.item);
-            self.emit('change');
-        });
-
-        eventPublisher.on('removeTodoItem', function (event) {
-            var itemToDelete;
-            todoItems.forEach(function(item){
-                if(item.id === event.itemId){
-                    itemToDelete = item;
-                }
-            });
-            if(itemToDelete !== undefined){
-                todoItems.splice(todoItems.indexOf(itemToDelete), 1);
-                self.emit('change');
+        dispatcher.register(function(payload) {
+            switch(payload.actionType){
+                case 'getAllTodoItems':
+                    todoItems = [].concat(payload.todoItems);
+                    self.emit('change');
+                    break;
+                case 'addTodoItem':
+                    todoItems.push(payload.item);
+                    self.emit('change');
+                    break;
+                case 'removeTodoItem':
+                    var itemToDelete;
+                    todoItems.forEach(function(item){
+                        if(item.id === payload.itemId){
+                            itemToDelete = item;
+                        }
+                    });
+                    if(itemToDelete !== undefined){
+                        todoItems.splice(todoItems.indexOf(itemToDelete), 1);
+                        self.emit('change');
+                    }
+                    break;
             }
         });
     }
