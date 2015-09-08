@@ -3,9 +3,8 @@
     module.exports = TodoItem;
 
     var React = require('react');
-    var Button = require('react-bootstrap').Button;
-    var Modal = require('react-bootstrap').Modal;
     var ButtonLoader = require('../ui/buttonLoader');
+    var QuestionModal = require('../ui/questionModal');
 
     function TodoItem(todoStore) {
         return React.createClass({
@@ -23,18 +22,13 @@
                                 bsStyle='danger'
                                 onClick={this.openConfirmationPopup}>Remove</ButtonLoader>
 
-                            <Modal show={this.state.showModal} onHide={this.closeConfirmationPopup}>
-                                <Modal.Header>
-                                    <Modal.Title>Delete of a todo item</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    Are you sure to delete the "{this.props.data.value}" todo item ?
-                                </Modal.Body>
-                                <Modal.Footer>
-                                    <Button onClick={this.closeConfirmationPopup}>No</Button>
-                                    <Button bsStyle='primary' onClick={this.removeTodoItem}>Yes</Button>
-                                </Modal.Footer>
-                            </Modal>
+                            <QuestionModal
+                                show={this.state.showModal}
+                                title='Delete of a todo item'
+                                content={'Are you sure to delete the "' + this.props.data.value + '" todo item ?'}
+                                onYesClick={this.removeTodoItem}
+                                onNoClick={this.closeConfirmationPopup}
+                                onCancelClick={this.closeConfirmationPopup} />
                         </td>
                     </tr>
                 );
