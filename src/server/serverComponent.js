@@ -5,12 +5,12 @@
     require('node-jsx').install();
 
     var express = require('express');
-    var path = require('path');
     var React = require('react');
     var Router = require('react-router');
-    var Template = require('./template');
     var TodoApi = require('./todoApi');
     var bodyParser = require('body-parser');
+    var _ = require('lodash');
+    var html = require('fs').readFileSync('./src/client/index.html').toString();
 
     var angioc = require('angioc');
     var Bootstrapper = require('../shared/bootstrapper');
@@ -20,7 +20,6 @@
     function ServerComponent(){
         var self = this;
         var server;
-        var template = new Template('../client/index.html');
         var api = new TodoApi();
 
         self.start = function(port){
@@ -56,11 +55,9 @@
                     var routes = routeFactory.getRoutes();
                     Router.run(routes, request.url, function(Handler){
                         var content = React.renderToString(React.createElement(Handler));
-                        template
-                            .render({app: content})
-                            .then(function(rendered){
-                                response.send(rendered);
-                            });
+                        var template = _.template(html);
+                        var rendered = template({app : content});
+                        response.send(rendered);
                     });
                 });
             });
