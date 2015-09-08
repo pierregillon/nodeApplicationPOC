@@ -6,10 +6,16 @@
     var Input = require('react-bootstrap').Input;
     var Button = require('react-bootstrap').Button;
 
-    function TodoAdd(todoActions) {
+    function TodoAdd(todoActions, todoStore) {
         return React.createClass({
             getInitialState: function () {
                 return buildState();
+            },
+            componentDidMount : function () {
+                todoStore.addChangeListener(this.onChange);
+            },
+            componentWillUnmount : function () {
+                todoStore.removeChangeListener(this.onChange);
             },
             render: function () {
                 return (
@@ -23,14 +29,20 @@
                             onKeyDown={this.handleInput} />
 
                         <Button
+                            className={this.state.isAdding ? 'disabled' : '' }
                             bsStyle='primary'
-                            onClick={this.addToCart}>Add</Button>
+                            onClick={this.addToCart}> {this.state.isAdding ? "Adding ..." : "Add" } </Button>
                     </div>
                 );
             },
+            onChange : function () {
+                this.setState(buildState(this.state.value));
+            },
             addToCart: function () {
-                todoActions.addTodo(this.state.value);
-                this.setState(buildState());
+                if(this.state.isAdding == false){
+                    todoActions.addTodo(this.state.value);
+                    this.setState(buildState());
+                }
             },
             handleChange: function (event) {
                 this.setState(buildState(event.target.value.substr(0, 140)));
@@ -44,7 +56,10 @@
 
         // ----- Internal logic
         function buildState(value) {
-            return {value: value};
+            return {
+                value: value,
+                isAdding : todoStore.isAddingItem
+            };
         }
     }
 

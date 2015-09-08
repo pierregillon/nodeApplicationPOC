@@ -3,6 +3,7 @@
     module.exports = TodoStore;
 
     var EventEmitter = require('events').EventEmitter;
+    var _ = require('lodash');
 
     function TodoStore(dispatcher) {
         var self = this;
@@ -10,6 +11,7 @@
 
         EventEmitter.prototype.constructor.call(self);
 
+        self.isAddingItem = false;
         self.addChangeListener = function (callback) {
             self.on('change', callback);
         };
@@ -26,21 +28,23 @@
                     todoItems = [].concat(payload.todoItems);
                     self.emit('change');
                     break;
+
+                case 'addingTodoItem':
+                    self.isAddingItem = true;
+                    self.emit('change');
+                    break;
+
                 case 'addTodoItem':
+                    self.isAddingItem = false;
                     todoItems.push(payload.item);
                     self.emit('change');
                     break;
+
                 case 'removeTodoItem':
-                    var itemToDelete;
-                    todoItems.forEach(function(item){
-                        if(item.id === payload.itemId){
-                            itemToDelete = item;
-                        }
+                    _.remove(todoItems, function(item){
+                        return item.id === payload.itemId
                     });
-                    if(itemToDelete !== undefined){
-                        todoItems.splice(todoItems.indexOf(itemToDelete), 1);
-                        self.emit('change');
-                    }
+                    self.emit('change');
                     break;
             }
         });

@@ -6,10 +6,12 @@
         var self = this;
 
         self.addTodo = function(text){
+            dispatcher.dispatch({
+                actionType: 'addingTodoItem'
+            });
             todoDataService
                 .addTodoItem(text)
                 .then(function(newTodoItem){
-                    console.log(newTodoItem);
                     dispatcher.dispatch({
                         actionType: 'addTodoItem',
                         item: newTodoItem
