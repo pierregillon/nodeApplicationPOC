@@ -13,6 +13,7 @@
 
         self.isAddingItem = false;
         self.isRemovingItem = false;
+        self.isLoadingItems = false;
         self.addChangeListener = function (callback) {
             self.on('change', callback);
         };
@@ -25,8 +26,14 @@
 
         dispatcher.register(function(payload) {
             switch(payload.actionType){
+                case 'gettingAllTodoItems':
+                    self.isLoadingItems = true;
+                    self.emit('change');
+                    break;
+
                 case 'getAllTodoItems':
                     todoItems = [].concat(payload.todoItems);
+                    self.isLoadingItems = false;
                     self.emit('change');
                     break;
 

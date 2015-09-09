@@ -19,6 +19,20 @@
             render : function () {
                 return (
                     <div>
+                        {this.state.isLoading ? this.renderLoading() : this.renderTodoItems()}
+                    </div>
+                );
+            },
+            renderLoading : function(){
+                return (
+                    <div>
+                        Loading ...
+                    </div>
+                );
+            },
+            renderTodoItems : function(){
+                return (
+                    <div>
                         <div style={this.state.todoItems.length == 0 ? undefined : {display : 'none'}}>
                             There is currently no tasks to do.
                         </div>
@@ -52,6 +66,7 @@
         // ----- Internal logic
         function buildState() {
             return {
+                isLoading : todoStore.isLoadingItems,
                 todoItems: todoStore.getTodoItems()
             };
         }

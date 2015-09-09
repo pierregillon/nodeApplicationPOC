@@ -34,6 +34,9 @@
         };
 
         self.loadTodoItems = function(){
+            dispatcher.dispatch({
+                actionType: 'gettingAllTodoItems'
+            });
             todoDataService
                 .getTodoItems()
                 .then(function(items){
