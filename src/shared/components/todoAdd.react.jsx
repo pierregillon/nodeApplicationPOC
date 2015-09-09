@@ -29,6 +29,7 @@
                             onKeyDown={this.handleInput} />
 
                         <ButtonLoader
+                            className={this.state.hasValue() ? '' : 'disabled'}
                             isLoading={this.state.isAdding}
                             bsStyle='primary'
                             onClick={this.addToCart}> Add </ButtonLoader>
@@ -45,7 +46,7 @@
                 }
             },
             handleChange: function (event) {
-                this.setState(buildState(event.target.value.substr(0, 140)));
+                this.setState(buildState(event.target.value));
             },
             handleInput: function(evt) {
                 if (evt.keyCode == 13 ) {
@@ -58,7 +59,10 @@
         function buildState(value) {
             return {
                 value: value,
-                isAdding : todoStore.isAddingItem
+                isAdding : todoStore.isAddingItem,
+                hasValue : function(){
+                    return value != undefined && value.length > 0;
+                }
             };
         }
     }

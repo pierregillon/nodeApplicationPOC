@@ -4,6 +4,7 @@
     var React = require('react');
     var Button = require('react-bootstrap').Button;
     var Loader = require('./loader');
+    var classnames = require('classnames');
 
     var ButtonLoader = React.createClass({
         propTypes : {
@@ -12,10 +13,11 @@
         },
 
         render : function(){
+            var classes = classnames([this.props.className], this.props.isLoading ? 'disabled' : '' );
             return (
                 <Button
                     {...this.props}
-                    className={this.props.isLoading ? 'disabled' : '' }
+                    className={classes}
                     onClick={this.doAction}>
                     {this.props.isLoading ? this.renderLoading() : this.props.children }
                  </Button>
