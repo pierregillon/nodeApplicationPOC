@@ -3,11 +3,11 @@
 
     var React = require('react');
     var Button = require('react-bootstrap').Button;
+    var Loader = require('./loader');
 
     var ButtonLoader = React.createClass({
         propTypes : {
             isLoading : React.PropTypes.bool,
-            loadingText : React.PropTypes.string,
             onClick : React.PropTypes.func
         },
 
@@ -17,8 +17,17 @@
                     {...this.props}
                     className={this.props.isLoading ? 'disabled' : '' }
                     onClick={this.doAction}>
-                    {this.props.isLoading ? this.props.loadingText : this.props.children }
+                    {this.props.isLoading ? this.renderLoading() : this.props.children }
                  </Button>
+            );
+        },
+
+        renderLoading : function(){
+            return (
+                <Loader
+                    spinnerName='three-bounce'
+                    overrideSpinnerClassName='three-bounce-white'
+                    noFadeIn/>
             );
         },
 

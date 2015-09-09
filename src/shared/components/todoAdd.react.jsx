@@ -30,7 +30,6 @@
 
                         <ButtonLoader
                             isLoading={this.state.isAdding}
-                            loadingText='Adding ...'
                             bsStyle='primary'
                             onClick={this.addToCart}> Add </ButtonLoader>
                     </div>

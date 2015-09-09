@@ -18,7 +18,6 @@
                         <td width={120}>
                             <ButtonLoader
                                 isLoading={this.state.isRemoving}
-                                loadingText='Removing ...'
                                 bsStyle='danger'
                                 onClick={this.openConfirmationPopup}>Remove</ButtonLoader>
 

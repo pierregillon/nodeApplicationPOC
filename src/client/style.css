@@ -53,5 +53,9 @@
 
 .loader{
     position: relative;
-    height: 35px;
+    left: 50%;
+}
+
+.three-bounce-white > div {
+    background-color: white !important;
 }
