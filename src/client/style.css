@@ -50,3 +50,8 @@
     opacity: 0;
     transition: opacity 10ms ease-in;
 }
+
+.loader{
+    position: relative;
+    height: 35px;
+}

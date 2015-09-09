@@ -4,6 +4,7 @@
 
     var React = require('react');
     var Table = require('react-bootstrap').Table;
+    var Loader = require('react-loader');
 
     function TodoList(TodoItem, todoStore, todoActions) {
         return React.createClass({
@@ -25,9 +26,7 @@
             },
             renderLoading : function(){
                 return (
-                    <div>
-                        Loading ...
-                    </div>
+                    <Loader loaded={false} className='loader'></Loader>
                 );
             },
             renderTodoItems : function(){
