@@ -7,7 +7,7 @@
     var express = require('express');
     var React = require('react');
     var Router = require('react-router');
-    var TodoApi = require('./todoApi');
+    var TodoApi = require('./../shared/todo/todoApi');
     var bodyParser = require('body-parser');
     var _ = require('lodash');
     var html = require('fs').readFileSync('./src/client/index.html').toString();
