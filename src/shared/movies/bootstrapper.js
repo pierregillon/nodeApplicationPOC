@@ -8,7 +8,11 @@
         var self = this;
 
         self.boot = function(){
-            registerSingleton('movieApp', require('./movieApp.jsx'), []);
+            registerSingleton('movieApp', require('./movieApp.jsx'), ['movieActions', 'movieList']);
+            registerSingleton('movieList', require('./movieList.jsx'), ['movieStore']);
+            registerSingleton('movieStore', require('./movieStore'), ['movieActions', 'movieDataService']);
+            registerSingleton('movieDataService', require('./movieDataService'), []);
+            registerSingleton('movieActions', require('./movieActions'), []);
         };
 
         function registerSingleton(name, func, dependencyNames){

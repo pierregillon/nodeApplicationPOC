@@ -5,9 +5,11 @@
     require('node-jsx').install();
 
     var express = require('express');
+    var path = require('path');
     var React = require('react');
     var Router = require('react-router');
     var TodoApi = require('./../shared/todo/todoApi');
+    var MoviesApi = require('./../shared/movies/moviesApi');
     var bodyParser = require('body-parser');
     var _ = require('lodash');
     var html = require('fs').readFileSync('./src/client/index.html').toString();
@@ -20,7 +22,8 @@
     function ServerComponent(){
         var self = this;
         var server;
-        var api = new TodoApi();
+        var todoApi = new TodoApi();
+        var moviesApi = new MoviesApi();
 
         self.start = function(port){
             var app = express();
@@ -30,25 +33,35 @@
             app.use(bodyParser.urlencoded({ extended: true }));
 
             app.get('/api/todo/all', function(request, response){
-                api
+                todoApi
                     .getTodoItems()
                     .then(function(todoItems){
                        response.send(todoItems);
                    });
             });
             app.post('/api/todo/add', function(request, response){
-                api
+                todoApi
                     .addTodoItem(request.body['text'])
                     .then(function(newItem){
                         response.send(newItem);
                     });
             });
             app.post('/api/todo/remove', function(request, response){
-                api
+                todoApi
                     .removeTodoItem(request.body['id'])
                     .then(function(){
                         response.send('OK');
                     });
+            });
+            app.get('/api/movie/all', function(request, response){
+                moviesApi
+                    .getAllMovies()
+                    .then(function(movies){
+                        response.send(movies);
+                    });
+            });
+            app.get('/images/*', function(request, response){
+                response.sendFile(path.join(__dirname, '../client/', request.path));
             });
             app.get('/*', function (request, response) {
                 angioc.resolve(['routes'], function(routeFactory){
