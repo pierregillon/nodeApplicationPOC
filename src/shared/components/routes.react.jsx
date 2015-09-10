@@ -7,7 +7,7 @@
     var Route = ReactRouter.Route;
     var DefaultRoute = ReactRouter.DefaultRoute;
 
-    function RouteFactory(Template, TodoApp, About){
+    function RouteFactory(Template, TodoApp, About, MovieApp){
         var self = this;
 
         self.getRoutes = function(){
@@ -16,6 +16,7 @@
                     <DefaultRoute handler={TodoApp} />
                     <Route name="todo" handler={TodoApp} />
                     <Route name="about" handler={About} />
+                    <Route name="movies" handler={MovieApp} />
                 </Route>
             );
         }
