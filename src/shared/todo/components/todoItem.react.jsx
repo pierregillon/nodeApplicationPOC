@@ -3,8 +3,8 @@
     module.exports = TodoItem;
 
     var React = require('react');
-    var ButtonLoader = require('../ui/buttonLoader');
-    var QuestionModal = require('../ui/questionModal');
+    var ButtonLoader = require('../../ui/buttonLoader');
+    var QuestionModal = require('../../ui/questionModal');
 
     function TodoItem(todoStore) {
         return React.createClass({

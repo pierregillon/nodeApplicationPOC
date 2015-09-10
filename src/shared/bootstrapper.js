@@ -4,23 +4,22 @@
 
     var angioc = require('angioc');
 
+    var TodoBootstrapper = require('./todo/bootstrapper');
+
     function Bootstrapper(){
         var self = this;
 
         self.boot = function(){
-            registerSingleton('todoActions', require('./actions/todoActions'), ['dispatcher', 'todoDataService']);
+
+            var todoBootrapper = new TodoBootstrapper();
+            todoBootrapper.boot();
+
+            registerSingleton('dispatcher', require('./dispatcher'), []);
             registerSingleton('about',  require('./components/about.react.jsx'), []);
             registerSingleton('header', require('./components/header.react.jsx'), []);
             registerSingleton('routes', require('./components/routes.react.jsx'), ['template', 'todoApp', 'about']);
             registerSingleton('siteMap', require('./components/siteMap.react.jsx'), []);
             registerSingleton('template', require('./components/template.react.jsx'), ['siteMap', 'header']);
-            registerSingleton('todoAdd', require('./components/todoAdd.react.jsx'), ['todoActions', 'todoStore']);
-            registerSingleton('todoApp', require('./components/todoApp.jsx'), ['todoActions', 'todoList', 'todoAdd']);
-            registerSingleton('todoList', require('./components/todoList.react.jsx'), ['todoItem', 'todoStore', 'todoActions']);
-            registerSingleton('todoItem', require('./components/todoItem.react.jsx'), ['todoStore']);
-            registerSingleton('todoStore', require('./stores/todoStore'), ['dispatcher']);
-            registerSingleton('dispatcher', require('./dispatcher'), []);
-            registerSingleton('todoDataService', require('./services/todoDataService'), []);
         };
 
         function registerSingleton(name, func, dependencyNames){

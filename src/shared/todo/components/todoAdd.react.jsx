@@ -4,7 +4,7 @@
 
     var React = require('react');
     var Input = require('react-bootstrap').Input;
-    var ButtonLoader = require('../ui/buttonLoader');
+    var ButtonLoader = require('../../ui/buttonLoader');
 
     function TodoAdd(todoActions, todoStore) {
         return React.createClass({

@@ -4,7 +4,7 @@
 
     var React = require('react');
     var Table = require('react-bootstrap').Table;
-    var Loader = require('../ui/loader');
+    var Loader = require('../../ui/loader');
 
     function TodoList(TodoItem, todoStore, todoActions) {
         return React.createClass({
