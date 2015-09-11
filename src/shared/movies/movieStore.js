@@ -16,15 +16,20 @@
             getInitialState: function () {
                 return currentState;
             },
+            setInitialState : function(state){
+                currentState = state;
+            },
 
             loadMovies: function () {
                 this.setState(buildState(true, []));
+                var self = this;
                 return movieDataService.getMovies()
-                    .then(this.loadMoviesCompleted.bind(this))
-                    .fail(this.loadMoviesFailed.bind(this));
+                    .then(self.loadMoviesCompleted.bind(this))
+                    .fail(self.loadMoviesFailed.bind(this));
             },
             loadMoviesCompleted : function(movies){
                 this.setState(buildState(false, movies));
+                return movies;
             },
             loadMoviesFailed : function(){
                 this.setState(buildState(false, []));

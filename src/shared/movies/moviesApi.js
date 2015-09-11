@@ -15,7 +15,7 @@
     function MoviesApi(){
         var self = this;
 
-        self.getAllMovies = function(){
+        self.getMovies = function(){
             var deferred = q.defer();
             setTimeout(function(){
                 deferred.resolve(movies);

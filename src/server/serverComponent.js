@@ -17,7 +17,7 @@
     var angioc = require('angioc');
     var Bootstrapper = require('../shared/bootstrapper');
     var bootstrapper = new Bootstrapper();
-    bootstrapper.boot();
+    bootstrapper.bootServer();
 
     function ServerComponent(){
         var self = this;
@@ -53,9 +53,12 @@
                         response.send('OK');
                     });
             });
+            app.get('/favicon.ico', function(request, response){
+                response.send('');
+            });
             app.get('/api/movie/all', function(request, response){
                 moviesApi
-                    .getAllMovies()
+                    .getMovies()
                     .then(function(movies){
                         response.send(movies);
                     });
@@ -64,14 +67,20 @@
                 response.sendFile(path.join(__dirname, '../client/', request.path));
             });
             app.get('/*', function (request, response) {
-                angioc.resolve(['routes'], function(routeFactory){
-                    var routes = routeFactory.getRoutes();
-                    Router.run(routes, request.url, function(Handler){
-                        var content = React.renderToString(React.createElement(Handler));
-                        var template = _.template(html);
-                        var rendered = template({app : content});
-                        response.send(rendered);
-                    });
+                angioc.resolve(['routes', 'movieActions'], function(routeFactory, movieActions){
+                    movieActions.loadMovies.triggerPromise()
+                        .then(function(movies) {
+                            var routes = routeFactory.getRoutes();
+                            Router.run(routes, request.url, function(Handler){
+                                var content = React.renderToString(React.createElement(Handler));
+                                var template = _.template(html);
+                                var rendered = template({app : content, data : JSON.stringify(movies)});
+                                response.send(rendered);
+                            });
+                        })
+                        .catch(function(err){
+                            response.send(err);
+                        });
                 });
             });
 

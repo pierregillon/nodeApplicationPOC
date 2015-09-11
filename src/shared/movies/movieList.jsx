@@ -20,7 +20,7 @@
                         <div>
                             {this.state.store.movies.map(function (item) {
                                 return (
-                                    <div>
+                                    <div key={item.id}>
                                         <img src={item.image} width={80} height={50}></img>
                                         <div><strong>{item.title}</strong></div>
                                         <div>{item.description}</div>

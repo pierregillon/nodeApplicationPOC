@@ -19,7 +19,7 @@
                         <SiteMap />
                         <div className="content">
                             <ReactCSSTransitionGroup transitionName="pageTransition" transitionLeave={false}>
-                                    <RouteHandler key={key}/>
+                                <RouteHandler key={key} {...this.props}/>
                             </ReactCSSTransitionGroup>
                         </div>
                     </div>

@@ -15,6 +15,14 @@
             registerSingleton('movieActions', require('./movieActions'), []);
         };
 
+        self.bootServer = function(){
+            registerSingleton('movieApp', require('./movieApp.jsx'), ['movieActions', 'movieList']);
+            registerSingleton('movieList', require('./movieList.jsx'), ['movieStore']);
+            registerSingleton('movieStore', require('./movieStore'), ['movieActions', 'movieDataService']);
+            registerSingleton('movieDataService', require('./moviesApi'), []);
+            registerSingleton('movieActions', require('./movieActions'), []);
+        };
+
         function registerSingleton(name, func, dependencyNames){
             angioc.register(name, func).asClass().asSingleton().withDependencies(dependencyNames);
         }
