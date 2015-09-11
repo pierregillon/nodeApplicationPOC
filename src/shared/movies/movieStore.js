@@ -1,31 +1,42 @@
-(function(module, require){
+(function (module, require) {
     'use strict';
     module.exports = MovieStore;
 
     var Reflux = require('reflux');
 
-    function MovieStore(movieActions, movieDataService){
-
-        var movies = [];
-
+    function MovieStore(movieActions, movieDataService) {
         return Reflux.createStore({
-            listenables: [movieActions],
-
-            getInitialState : function(){
-                return movies;
+            init: function () {
+                movieActions.fetchList.listenAndPromise(this.loadMovieList);
             },
 
-            init: function() {
-                this.fetchList();
+            getInitialState: function () {
+                return buildState(false, []);
             },
 
-            fetchList: function() {
-                movieDataService.getMovies().then(function(results){
-                    movies = results;
-                    this.trigger(movies);
-                }.bind(this));
+            loadMovieList: function () {
+                this.setState(buildState(true, []));
+                return movieDataService.getMovies()
+                    .then(this.loadMoviesCompleted)
+                    .fail(this.loadMoviesFailed);
+            },
+            loadMoviesCompleted : function(movies){
+                this.setState(buildState(false, movies));
+            },
+            loadMoviesFailed : function(){
+                this.setState(buildState(false, []));
+            },
+            setState: function (state) {
+                this.trigger(state);
             }
         });
+
+        function buildState(loading, data) {
+            return {
+                movies: data,
+                isLoading: loading
+            }
+        }
     }
 
 }(module, require));
