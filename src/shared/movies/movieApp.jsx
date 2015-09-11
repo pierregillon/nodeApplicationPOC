@@ -7,8 +7,8 @@
 
     function MovieApp(movieActions, MovieList){
         return React.createClass({
-            componentWillMount : function(){
-                movieActions.fetchList();
+            componentDidMount : function(){
+                movieActions.loadMovies();
             },
             render : function(){
                 return (

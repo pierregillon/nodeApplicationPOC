@@ -6,7 +6,7 @@
 
     function MovieActions(){
         return Reflux.createActions({
-            "fetchList": { asyncResult: true }
+            "loadMovies": { asyncResult: true }
         });
     }
 
