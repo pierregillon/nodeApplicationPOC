@@ -8,9 +8,7 @@
     function MovieApp(movieActions, MovieList){
         return React.createClass({
             componentDidMount : function(){
-                if(this.props.storeHasBeenInitialized == false){
-                    movieActions.loadMovies();
-                }
+                movieActions.loadMovies();
             },
             render : function(){
                 return (

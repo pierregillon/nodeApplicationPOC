@@ -78,7 +78,8 @@
                                 response.send(rendered);
                             })
                             .catch(function (err) {
-                                response.send(err);
+                                console.log(err.toString());
+                                response.send(err.toString());
                             });
                     });
                 });

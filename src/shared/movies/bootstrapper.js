@@ -9,7 +9,8 @@
 
         self.boot = function(params){
             registerSingleton('movieApp', require('./movieApp.jsx'), ['movieActions', 'movieList']);
-            registerSingleton('movieList', require('./movieList.jsx'), ['movieStore']);
+            registerSingleton('movieList', require('./movieList.jsx'), ['movieStore', 'movieItem']);
+            registerSingleton('movieItem', require('./movieItem.jsx'), []);
             registerSingleton('movieStore', require('./movieStore'), ['movieActions', 'movieDataService']);
             registerSingleton('movieActions', require('./movieActions'), []);
 

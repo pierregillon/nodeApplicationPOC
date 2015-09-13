@@ -16,7 +16,7 @@
         }
         var routes = routeFactory.getRoutes();
         Router.run(routes, Router.HistoryLocation, function (Root) {
-            React.render(<Root storeHasBeenInitialized={initialData !== undefined}/>, document.getElementById('root'));
+            React.render(<Root />, document.getElementById('root'));
         });
     });
 
