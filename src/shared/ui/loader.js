@@ -1,5 +1,5 @@
 (function (module, require) {
-    'user strict';
+    'use strict';
 
     var React = require('react');
 

@@ -1,5 +1,5 @@
 (function(module, require){
-    'user strict';
+    'use strict';
     module.exports = TodoDataService;
 
     var q = require('q');

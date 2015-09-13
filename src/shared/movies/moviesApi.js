@@ -1,5 +1,5 @@
 (function(module, require){
-    'user strict';
+    'use strict';
     module.exports = MoviesApi;
 
     var q = require('q');
