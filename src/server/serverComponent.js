@@ -18,7 +18,7 @@
     var angioc = require('angioc');
     var Bootstrapper = require('../shared/bootstrapper');
     var bootstrapper = new Bootstrapper();
-    bootstrapper.bootServer();
+    bootstrapper.boot({mode: 'SERVER'});
 
     function ServerComponent() {
         var self = this;

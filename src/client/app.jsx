@@ -7,7 +7,7 @@
     var Bootstrapper = require('../shared/bootstrapper');
 
     var bootstrapper = new Bootstrapper();
-    bootstrapper.boot();
+    bootstrapper.boot({mode: 'CLIENT'});
 
     angioc.resolve(['routes', 'movieStore'], function(routeFactory, movieStore){
         var initialData = JSON.parse(document.getElementById("initial-data").innerHTML);

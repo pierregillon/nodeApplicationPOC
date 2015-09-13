@@ -7,20 +7,18 @@
     function Bootstrapper(){
         var self = this;
 
-        self.boot = function(){
+        self.boot = function(params){
             registerSingleton('movieApp', require('./movieApp.jsx'), ['movieActions', 'movieList']);
             registerSingleton('movieList', require('./movieList.jsx'), ['movieStore']);
             registerSingleton('movieStore', require('./movieStore'), ['movieActions', 'movieDataService']);
-            registerSingleton('movieDataService', require('./movieDataService'), []);
             registerSingleton('movieActions', require('./movieActions'), []);
-        };
 
-        self.bootServer = function(){
-            registerSingleton('movieApp', require('./movieApp.jsx'), ['movieActions', 'movieList']);
-            registerSingleton('movieList', require('./movieList.jsx'), ['movieStore']);
-            registerSingleton('movieStore', require('./movieStore'), ['movieActions', 'movieDataService']);
-            registerSingleton('movieDataService', require('./moviesApi'), []);
-            registerSingleton('movieActions', require('./movieActions'), []);
+            if(params.mode == 'SERVER'){ // In server mode we register directly the api and not the data service.
+                registerSingleton('movieDataService', require('./moviesApi'), []);
+            }
+            else {
+                registerSingleton('movieDataService', require('./movieDataService'), []);
+            }
         };
 
         function registerSingleton(name, func, dependencyNames){

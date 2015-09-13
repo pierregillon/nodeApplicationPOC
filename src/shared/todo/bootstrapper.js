@@ -7,7 +7,7 @@
     function Bootstrapper(){
         var self = this;
 
-        self.boot = function(){
+        self.boot = function(params){
             registerSingleton('todoActions', require('./todoActions'), ['dispatcher', 'todoDataService']);
             registerSingleton('todoAdd', require('./components/todoAdd.react.jsx'), ['todoActions', 'todoStore']);
             registerSingleton('todoApp', require('./components/todoApp.jsx'), ['todoActions', 'todoList', 'todoAdd']);
