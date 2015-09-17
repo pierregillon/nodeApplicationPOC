@@ -101,7 +101,7 @@
                     loadMovies(synchronizePromise(deferred));
                     break;
                 default:
-                    deferred.resolve({});
+                    deferred.resolve();
             }
             return deferred.promise;
         }

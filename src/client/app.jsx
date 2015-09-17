@@ -13,6 +13,7 @@
         var initialData = JSON.parse(document.getElementById("initial-data").innerHTML);
         if(initialData){
             movieStore.setInitialState({isLoading:false, movies:initialData});
+            document.getElementById("initial-data").innerHTML = '';
         }
         var routes = routeFactory.getRoutes();
         Router.run(routes, Router.HistoryLocation, function (Root) {

@@ -5,10 +5,12 @@
     var React = require('react');
     var PageHeader = require('react-bootstrap').PageHeader;
 
-    function MovieApp(movieActions, MovieList){
+    function MovieApp(movieActions, movieStore, MovieList){
         return React.createClass({
-            componentDidMount : function(){
-                movieActions.loadMovies();
+            componentWillMount : function(){
+                if(movieStore.getInitialState().movies.length == 0){
+                    movieActions.loadMovies();
+                }
             },
             render : function(){
                 return (
